@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaperTrade | Market replay</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<header class="top"><a href="/" class="brand"><span>↗</span> PaperTrade</a><span>Market replay</span></header>
+<main>
+<section class="hero">
+<div><h1>Market replay</h1><p>Practice trading with historical NSE prices and ₹1,00,000 in virtual cash.</p></div>
+<div class="controls"><label>Search stocks <input id="stock-search" type="search" placeholder="Symbol or company"></label><label>Stock <select id="stock"></select></label><label>Replay start <input id="start" type="date" aria-describedby="available-dates"></label><button id="restart">Start replay</button><button id="challenge" class="primary">10-session challenge</button></div>
+</section>
+<p id="available-dates"></p>
+<p id="message" role="status"></p>
+<section class="stats" aria-label="Portfolio summary">
+<div><small>Portfolio value</small><strong id="value">—</strong></div>
+<div><small>Cash available</small><strong id="cash">—</strong></div>
+<div><small>Shares held</small><strong id="shares">—</strong></div>
+<div><small>Total P&L</small><strong id="pnl">—</strong></div>
+</section>
+<div class="grid">
+<section class="card market">
+<div class="row"><div><h2 id="company">Market chart</h2><p id="market-label"></p></div><strong id="quote">—</strong></div>
+<div class="chart-tools">
+<label>Chart <select id="chart-mode"><option value="candles">Candlestick</option><option value="line">Line</option></select></label>
+<label>Sessions <select id="window"><option>10</option><option selected>20</option><option>40</option><option>80</option><option>160</option><option>320</option></select></label>
+<div class="chart-group" aria-label="Zoom"><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="zoom-out" type="button" aria-label="Zoom out">−</button></div>
+<div class="chart-group" aria-label="Chart drawings">
+<button type="button" data-tool="pan" aria-pressed="true">Pan</button>
+<button type="button" data-tool="horizontal" aria-pressed="false">Horizontal line</button>
+<button type="button" data-tool="vertical" aria-pressed="false">Vertical line</button>
+<button id="undo-line" type="button" disabled>Undo line</button>
+</div>
+</div>
+<canvas id="chart" role="img" aria-label="Revealed historical prices and trade markers"></canvas>
+<div class="chart-tools"><label for="history-window">Chart history</label><input id="history-window" type="range" min="0" max="0" value="0"><output id="chart-range"></output></div>
+<label for="inspect-date">Inspect session</label> <select id="inspect-date"></select>
+<p id="ohlc"></p>
+<p id="chart-help" role="status">Drag to pan. Scroll on the chart or use + and − to zoom.</p>
+<details><summary>How to read candles</summary><p>The body spans open to close. Wicks mark the high and low. Green means the close was at or above the open; red means it was below. A doji has a very small body. A hammer shape has a long lower wick. Engulfing means one candle's body covers the previous opposite-color body. These labels describe price shapes.</p></details>
+<div class="row footer"><div><strong id="date">—</strong><p id="progress"></p></div><button id="next" class="primary">Next session →</button></div>
+</section>
+<section class="card ticket">
+<h2>Order ticket</h2><p>Orders fill at the next session’s open.</p>
+<form id="trade">
+<label for="quantity">Quantity</label>
+<input id="quantity" type="number" min="1" max="100000" step="1" value="10" required>
+<p id="estimate"></p>
+<div class="trade-buttons"><button name="buy" class="primary">Buy</button><button name="sell">Sell</button></div>
+</form>
+<div id="pending"></div><button id="cancel" hidden>Cancel order</button>
+<div class="benchmark"><h2>Buy and hold</h2><p>Same starting cash, invested at the first available open.</p><strong id="benchmark">—</strong><p id="difference"></p></div>
+</section>
+</div>
+<section class="card history"><h2>Trade history</h2><div class="table"><table><thead><tr><th>Date</th><th>Side</th><th>Shares</th><th>Open price</th><th>Status</th></tr></thead><tbody id="trades"></tbody></table></div></section>
+<footer>Source: NSE historical daily data · Delivery-style simulation. Prices and holdings are unadjusted for corporate actions.</footer>
+</main>
+</body>
+</html>

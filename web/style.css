@@ -1,0 +1,53 @@
+:root { font: 16px/1.45 "Segoe UI", sans-serif; color: #172d32; background: #eff4f3; --accent: #08634e; --border: #d9e5e1; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.top { display: flex; align-items: center; justify-content: space-between; padding: 14px max(5vw, calc((100vw - 1240px) / 2)); background: #102e2d; color: #c8e4d9; }
+.brand { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 750; }
+.brand span { color: #89e4c2; margin-right: 4px; }
+main { max-width: 1280px; margin: auto; padding: 28px 22px; }
+.hero,.row,.controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.055em; margin: 0; }
+h2 { font-size: 1.15rem; margin: 0; }
+p,small,footer,label { color: #4e6667; }
+p { margin: 4px 0; }
+button,select,input { font: inherit; border: 1px solid #bacdc7; background: white; color: inherit; border-radius: 8px; padding: 8px 12px; }
+button { cursor: pointer; font-weight: 650; }
+button:hover:enabled { border-color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+.primary { background: var(--accent); border-color: var(--accent); color: white; }
+.controls label { display: flex; align-items: center; gap: 8px; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 14px 0; }
+.stats div,.card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 19px; min-width: 0; }
+.stats strong { display: block; margin-top: 4px; font-size: clamp(1rem, 3vw, 1.7rem); }
+.grid { display: grid; grid-template-columns: minmax(0, 2.25fr) minmax(250px, 1fr); gap: 14px; }
+canvas { display: block; width: 100%; height: 275px; margin: 12px 0; }
+.footer,.benchmark { border-top: 1px solid var(--border); padding-top: 12px; }
+.ticket form,.benchmark { margin-top: 18px; }
+.ticket input { display: block; margin-top: 4px; width: 100%; }
+.trade-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 9px; }
+#pending { margin: 9px 0; }
+#message:empty { display: none; }
+#message { background: #fff2dc; padding: 8px 12px; border-radius: 8px; margin-top: 10px; }
+.history { margin-top: 14px; }
+.table { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 465px; text-align: left; }
+td,th { padding: 8px; border-bottom: 1px solid var(--border); }
+th { color: #4e6667; font-size: .82rem; }
+footer { margin-top: 14px; font-size: .85rem; }
+.gain { color: #08634e; }
+.loss { color: #a03236; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, 1fr); } }
+
+.chart-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+.chart-tools input[type=range] { flex: 1; min-width: 120px; padding: 0; accent-color: var(--accent); }
+#chart-range, #ohlc, details { font-size: .87rem; color: #4e6667; }
+#ohlc { margin: 8px 0; }
+details { margin-bottom: 10px; }
+canvas { touch-action: pan-y; cursor: ew-resize; }
+#stock-search { width: 155px; }
+
+.chart-group { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.chart-group button { padding: 5px 8px; font-size: .83rem; }
+.chart-group button[aria-pressed=true] { background: #e1f2ec; border-color: var(--accent); }
+#chart[data-tool=horizontal], #chart[data-tool=vertical] { cursor: crosshair; }
+#chart-help { font-size: .85rem; margin-bottom: 8px; }
